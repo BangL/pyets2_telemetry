@@ -107,7 +107,7 @@ The loader is made up of two parts: The C++ native loader and the Python framewo
 
 The native loader uses the [Python/C API](https://docs.python.org/3/c-api/) to load the Python framework. Source code is found in the `cpp` and `hpp` files. `loader.cpp` is the starting point.
 
-Build the code using `make`. The `Makefile` expects to find `eurotrucks2_telemetry_sdk_1.10` in the top source directory.
+Build the code using `make`. The `Makefile` expects to find `scs_sdk_1_14` in the top source directory.
 
 The output library is called `pyets2_telemetry_loader.so`.
 
