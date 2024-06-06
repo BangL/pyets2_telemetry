@@ -2,6 +2,9 @@
 
 *Python plug-in support for SCS Telemetry SDK*
 
+forked and somewhat updated version of:
+https://github.com/thomasa88/pyets2_telemetry
+
 ## Introduction
 
 pyets2_telemetry provides support for adding Python plug-ins to ETS2 ([Euro Truck Simulator 2](https://eurotrucksimulator2.com/)) by SCS Software. It consists of two parts: A native C++ ETS2 plug-in, that the game loads, and a Python framework, which is loaded by the native plug-in. The Python framework provides a plug-in API that is very similar to the ETS2 native API.
@@ -25,7 +28,7 @@ Euro Truck Simulator 2
 └── bin
     └── linux_x64
         └── plugins
-            ├── pyets2_telemetry_loader_1_0.so
+            ├── pyets2_telemetry_loader_1_1.so
             └── python
                 └── pyets2lib
 ```
@@ -34,7 +37,7 @@ When you start the game, if the plug-in is detected, it will show a dialog about
 
 ## Compatibility
 
-pyets2_telemetry has been tested with Euro Truck Simulator 2 version 1.35 on Ubuntu 18.04, with Python 3.6.
+pyets2_telemetry has been tested with Euro Truck Simulator 2 version 1.50 on Arch, with Python 3.12.3.
 
 ## Performance
 
