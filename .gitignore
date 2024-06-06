@@ -3,3 +3,4 @@ __pycache__
 /test
 *.tar.bz2
 /scs_sdk_*
+/.vscode/
