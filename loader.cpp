@@ -352,7 +352,9 @@ SCSAPI_RESULT scs_telemetry_init(const scs_u32_t version, const scs_telemetry_in
     PyImport_AppendInittab("_telemetry", &pymod::create);
     
     Py_InitializeEx(0);
+#if PY_MAJOR_VERSION == 3 && PY_MINOR_VERSION < 9
     PyEval_InitThreads();
+#endif
 
     { // Make sure no pyhelp::PyObjRef ref counting happens after PyEval_SaveThread()
         std::string python_module_name = "pyets2lib.loader";
