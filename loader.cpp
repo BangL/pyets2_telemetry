@@ -126,10 +126,10 @@ static pyhelp::PyObjRef create_py_value(const scs_value_t *value) {
             py_value.set(PyDict_New());
             PyDict_SetItemString(py_value.get(), "position",
                                  create_py_vector(
-                                     value->value_fplacement.position).get());
+                                     value->value_dplacement.position).get());
             PyDict_SetItemString(py_value.get(), "orientation",
                                  create_py_euler(
-                                     value->value_fplacement.orientation).get());
+                                     value->value_dplacement.orientation).get());
             break;
         case SCS_VALUE_TYPE_string:
             py_value.set(PyUnicode_FromString(value->value_string.value));
