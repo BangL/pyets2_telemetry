@@ -21,11 +21,11 @@ SDK_DIR ?= scs_sdk_1_14
 
 SDK_CFLAGS := -I$(SDK_DIR)/include
 
-PYTHON_CFLAGS := -I/usr/include/python3.6m
+PYTHON_CFLAGS := $(shell pkg-config --cflags python3)
 PYTHON_LDFLAGS := $(shell pkg-config --libs python3)
 
-CXXFLAGS := $(SDK_CFLAGS) $(PYTHON_CFLAGS) -std=c++17 -fPIC -Wall -Ofast
-LDFLAGS := $(PYTHON_LDFLAGS) -lpython3.6m
+CXXFLAGS := $(SDK_CFLAGS) $(PYTHON_CFLAGS) -std=c++17 -fPIC -Wall -O2
+LDFLAGS := $(PYTHON_LDFLAGS)
 
 VERSION := $(shell cut -d '"' -f 2 version.hpp | sed 's/\./_/g')
 INCS := pyhelp.hpp log.hpp version.hpp
