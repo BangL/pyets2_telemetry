@@ -21,8 +21,8 @@ SDK_DIR ?= scs_sdk_1_14
 
 SDK_CFLAGS := -I$(SDK_DIR)/include
 
-PYTHON_CFLAGS := $(shell pkg-config --cflags python3)
-PYTHON_LDFLAGS := $(shell pkg-config --libs python3)
+PYTHON_CFLAGS := $(shell pkg-config python3-embed --cflags)
+PYTHON_LDFLAGS := $(shell pkg-config python3-embed --libs)
 
 CXXFLAGS := $(SDK_CFLAGS) $(PYTHON_CFLAGS) -std=c++17 -fPIC -Wall -O2
 LDFLAGS := $(PYTHON_LDFLAGS)
