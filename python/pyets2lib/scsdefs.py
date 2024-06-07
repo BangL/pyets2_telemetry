@@ -50,6 +50,16 @@ class ScsIndexedChannel(ScsChannelBase):
         for i in list(range(count)):
             self.channels.append(ScsChannel(root + '.' + str(i) + '.' + name, type, indexed, index_count, self))
 
+SCS_ATTRIBUTES = {}
+
+class ScsAttribute(ScsObjectBase):
+    def __init__(self, name, indexed=False, index_count=1):
+        super().__init__(name)
+        self.name: str = name
+        self.indexed: bool = indexed
+        self.index_count: int = index_count
+        SCS_ATTRIBUTES[name] = self
+
 class ScsEvent(ScsObjectBase):
     def __init__(self, id):
         super().__init__(id)
@@ -218,51 +228,51 @@ SCS_TELEMETRY_CONFIG_truck = 'truck'
 # Config event attributes
 
 # truck
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_brand_id = 'brand_id'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_brand = 'brand'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_id = 'id'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_cargo_accessory_id = 'cargo.accessory.id'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_chain_type = 'chain.type'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_body_type = 'body.type'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_license_plate = 'license.plate'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_license_plate_country_id = 'license.plate.country.id'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_license_plate_country = 'license.plate.country'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_name = 'name'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_fuel_capacity = 'fuel.capacity'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_fuel_warning_factor = 'fuel.warning.factor'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_adblue_capacity = 'adblue.capacity'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_adblue_warning_factor = 'adblue.warning.factor'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_air_pressure_warning = 'brake.air.pressure.warning'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_air_pressure_emergency = 'brake.air.pressure.emergency'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_oil_pressure_warning = 'oil.pressure.warning'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_water_temperature_warning = 'water.temperature.warning'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_battery_voltage_warning = 'battery.voltage.warning'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_rpm_limit = 'rpm.limit'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_forward_gear_count = 'gears.forward'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_reverse_gear_count = 'gears.reverse'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_differential_ratio = 'differential.ratio'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_retarder_step_count = 'retarder.steps'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_forward_ratio = 'forward.ratio' # indexed
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_reverse_ratio = 'reverse.ratio' # indexed
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_cabin_position = 'cabin.position'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_head_position = 'head.position'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_hook_position = 'hook.position'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_wheel_count = 'wheels.count'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_wheel_position = 'wheel.position' # indexed
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_wheel_steerable = 'wheel.steerable' # indexed
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_wheel_simulated = 'wheel.simulated' # indexed
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_wheel_radius = 'wheel.radius' # indexed
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_wheel_powered = 'wheel.powered' # indexed
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_wheel_liftable = 'wheel.liftable' # indexed
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_brand_id = ScsAttribute('brand_id')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_brand = ScsAttribute('brand')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_id = ScsAttribute('id')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_cargo_accessory_id = ScsAttribute('cargo.accessory.id')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_chain_type = ScsAttribute('chain.type')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_body_type = ScsAttribute('body.type')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_license_plate = ScsAttribute('license.plate')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_license_plate_country_id = ScsAttribute('license.plate.country.id')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_license_plate_country = ScsAttribute('license.plate.country')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_name = ScsAttribute('name')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_fuel_capacity = ScsAttribute('fuel.capacity')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_fuel_warning_factor = ScsAttribute('fuel.warning.factor')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_adblue_capacity = ScsAttribute('adblue.capacity')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_adblue_warning_factor = ScsAttribute('adblue.warning.factor')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_air_pressure_warning = ScsAttribute('brake.air.pressure.warning')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_air_pressure_emergency = ScsAttribute('brake.air.pressure.emergency')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_oil_pressure_warning = ScsAttribute('oil.pressure.warning')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_water_temperature_warning = ScsAttribute('water.temperature.warning')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_battery_voltage_warning = ScsAttribute('battery.voltage.warning')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_rpm_limit = ScsAttribute('rpm.limit')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_forward_gear_count = ScsAttribute('gears.forward')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_reverse_gear_count = ScsAttribute('gears.reverse')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_differential_ratio = ScsAttribute('differential.ratio')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_retarder_step_count = ScsAttribute('retarder.steps')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_forward_ratio = ScsAttribute('forward.ratio', True) # indexed
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_reverse_ratio = ScsAttribute('reverse.ratio', True) # indexed
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_cabin_position = ScsAttribute('cabin.position')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_head_position = ScsAttribute('head.position')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_hook_position = ScsAttribute('hook.position')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_wheel_count = ScsAttribute('wheels.count')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_wheel_position = ScsAttribute('wheel.position', True) # indexed
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_wheel_steerable = ScsAttribute('wheel.steerable', True) # indexed
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_wheel_simulated = ScsAttribute('wheel.simulated', True) # indexed
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_wheel_radius = ScsAttribute('wheel.radius', True) # indexed
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_wheel_powered = ScsAttribute('wheel.powered', True) # indexed
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_wheel_liftable = ScsAttribute('wheel.liftable', True) # indexed
 
 # hshifter
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_selector_count = 'selector.count'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_slot_gear = 'slot.gear' # indexed
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_slot_handle_position = 'slot.handle.position' # indexed
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_slot_selectors = 'slot.selectors' # indexed
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_selector_count = ScsAttribute('selector.count')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_slot_gear = ScsAttribute('slot.gear', True) # indexed
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_slot_handle_position = ScsAttribute('slot.handle.position', True) # indexed
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_slot_selectors = ScsAttribute('slot.selectors', True) # indexed
 
 # controls
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_shifter_type = 'shifter.type'
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_shifter_type = ScsAttribute('shifter.type')
 
 SCS_SHIFTER_TYPE_arcade = 'arcade'
 SCS_SHIFTER_TYPE_automatic = 'automatic'
@@ -270,25 +280,25 @@ SCS_SHIFTER_TYPE_manual = 'manual'
 SCS_SHIFTER_TYPE_hshifter = 'hshifter'
 
 # job
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_cargo_id = 'cargo.id'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_cargo = 'cargo'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_cargo_mass = 'cargo.mass'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_cargo_unit_mass = 'cargo.unit.mass'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_cargo_unit_count = 'cargo.unit.count'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_destination_city_id = 'destination.city.id'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_destination_city = 'destination.city'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_destination_company_id = 'destination.company.id'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_destination_company = 'destination.company'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_source_city_id = 'source.city.id'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_source_city = 'source.city'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_source_company_id = 'source.company.id'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_source_company = 'source.company'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_income = 'income'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_delivery_time = 'delivery.time'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_planned_distance_km = 'planned_distance.km'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_is_cargo_loaded = 'cargo.loaded'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_job_market = 'job.market'
-SCS_TELEMETRY_CONFIG_ATTRIBUTE_special_job = 'is.special.job'
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_cargo_id = ScsAttribute('cargo.id')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_cargo = ScsAttribute('cargo')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_cargo_mass = ScsAttribute('cargo.mass')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_cargo_unit_mass = ScsAttribute('cargo.unit.mass')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_cargo_unit_count = ScsAttribute('cargo.unit.count')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_destination_city_id = ScsAttribute('destination.city.id')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_destination_city = ScsAttribute('destination.city')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_destination_company_id = ScsAttribute('destination.company.id')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_destination_company = ScsAttribute('destination.company')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_source_city_id = ScsAttribute('source.city.id')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_source_city = ScsAttribute('source.city')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_source_company_id = ScsAttribute('source.company.id')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_source_company = ScsAttribute('source.company')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_income = ScsAttribute('income')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_delivery_time = ScsAttribute('delivery.time')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_planned_distance_km = ScsAttribute('planned_distance.km')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_is_cargo_loaded = ScsAttribute('cargo.loaded')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_job_market = ScsAttribute('job.market')
+SCS_TELEMETRY_CONFIG_ATTRIBUTE_special_job = ScsAttribute('is.special.job')
 
 SCS_TELEMETRY_GAMEPLAY_EVENT_job_cancelled = 'job.cancelled'
 SCS_TELEMETRY_GAMEPLAY_EVENT_job_delivered = 'job.delivered'
@@ -297,18 +307,18 @@ SCS_TELEMETRY_GAMEPLAY_EVENT_player_tollgate_paid = 'player.tollgate.paid'
 SCS_TELEMETRY_GAMEPLAY_EVENT_player_use_ferry = 'player.use.ferry'
 SCS_TELEMETRY_GAMEPLAY_EVENT_player_use_train = 'player.use.train'
 
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_cancel_penalty = 'cancel.penalty'
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_revenue = 'revenue'
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_earned_xp = 'earned.xp'
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_cargo_damage = 'cargo.damage'
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_distance_km = 'distance.km'
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_delivery_time = 'delivery.time'
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_auto_park_used = 'auto.park.used'
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_auto_load_used = 'auto.load.used'
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_fine_offence = 'fine.offence'
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_fine_amount = 'fine.amount'
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_pay_amount = 'pay.amount'
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_source_name = 'source.name'
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_target_name = 'target.name'
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_source_id = 'source.id'
-SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_target_id = 'target.id'
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_cancel_penalty = ScsAttribute('cancel.penalty')
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_revenue = ScsAttribute('revenue')
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_earned_xp = ScsAttribute('earned.xp')
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_cargo_damage = ScsAttribute('cargo.damage')
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_distance_km = ScsAttribute('distance.km')
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_delivery_time = ScsAttribute('delivery.time')
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_auto_park_used = ScsAttribute('auto.park.used')
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_auto_load_used = ScsAttribute('auto.load.used')
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_fine_offence = ScsAttribute('fine.offence')
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_fine_amount = ScsAttribute('fine.amount')
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_pay_amount = ScsAttribute('pay.amount')
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_source_name = ScsAttribute('source.name')
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_target_name = ScsAttribute('target.name')
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_source_id = ScsAttribute('source.id')
+SCS_TELEMETRY_GAMEPLAY_EVENT_ATTRIBUTE_target_id = ScsAttribute('target.id')
