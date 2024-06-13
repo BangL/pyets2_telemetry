@@ -36,6 +36,8 @@ Euro Truck Simulator 2
 
 When you start the game, if the plug-in is detected, it will show a dialog about *Request to use advanced SDK features detected.*
 
+On some distros you might have to add `LD_PRELOAD=/usr/lib/libpython3.so %command%` (or similar) to your game startup params in steam, to get the python part loaded!
+
 ## Compatibility
 
 pyets2_telemetry has been tested with Euro Truck Simulator 2 version 1.50 on Arch, with Python 3.12.3.
